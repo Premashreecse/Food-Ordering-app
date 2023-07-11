@@ -1,0 +1,103 @@
+def register_user():
+    name=input("enter your name: ")
+    password=input("enter the password: ")
+    print("**********WELCOME"' '+ name + ' '"TO TRADITIONAL SWAAD*************")
+    print("************HERE IS YOUR MENU ORDER AND ENJOY THE TASTE*************")
+register_user()
+menu = {
+    'burger': 57.99,
+    'pizza': 89.99,
+    'sandwich': 67.99,
+    'fries': 29.99,
+    'soda': 21.99,
+    'gobi manchurian': 50.00,
+    'paneer tikka': 100.00,
+    'mushroom soup': 56.00,
+    'roti': 20.00,
+    'kulcha': 21.00,
+    'butter naan': 25.00,
+    'kadai paneer' :100.00,
+    'mushroom masala': 150.00,
+    'veg biryani': 125.00,
+    'ghee rice': 90.00,
+    'jeera rice': 80.00,
+    'chicken tikka': 150.00,
+    'chicken soup': 100.00,
+    'chicken biryani': 180.00,
+    'chicken kabab': 150.00,
+    'chicken pepper dry': 80.00,
+    'mutton liver': 200.00
+}
+
+
+# Define an empty list to store the selected items
+order = []
+
+# Function to display the menu
+def display_menu():
+    print("menu:")
+    for item, price in menu.items():
+        print(f"{item.capitalize()}: ${price}")
+    
+
+# Function to place an order
+def place_order():
+    display_menu()
+    print("Enter the items you want to order (separated by commas):")
+    items = input().lower().split(',')
+
+    # Check if the items are available and add them to the order
+    for item in items:
+        item = item.strip()
+        if item in menu:
+            order.append(item)
+        else:
+            print(f"{item.capitalize()} is not available.")
+
+    print("Your order has been placed.")
+
+# Function to calculate the total cost of the order
+def calculate_total():
+    total = 0
+    for item in order:
+        total += menu[item]
+    return total
+
+def feedback():
+    print("Please share your experience with Traditional Swaad ")
+    feed=input("Share your Experience")
+    print("Thank you for contacting Traditional Swaad meet you up again")
+    
+# Main program loop
+while True:
+    print("\nFood Ordering System")
+    print("1. Place an order")
+    print("2. View order")
+    print("3. Calculate total")
+    print("4. Feedback")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1-5): ")
+
+    if choice == '1':
+        place_order()
+    elif choice == '2':
+        if len(order) == 0:
+            print("Your order is empty.")
+        else:
+            print("Your order:")
+            for item in order:
+                print(item.capitalize())
+    elif choice == '3':
+        if len(order) == 0:
+            print("Your order is empty.")
+        else:
+            total = calculate_total()
+            print(f"Total: ${total}")
+    elif choice =='4':
+        feedback()
+    elif choice == '5':
+        print("Thank you for using the Traditional Swaad. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
